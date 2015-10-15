@@ -1,0 +1,28 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<conio.h>
+#include<limits.h> // CHAR_BIT需要，CHAR_BIT定义了一个字节多少位
+
+void Bit(int val)
+{
+	int len = sizeof(int) * CHAR_BIT;  // 求位数
+	int head = 1 << (len - 1);         // 把1的最高位置为1（因为本身占一位，所以是len-1）
+	printf("\n\t该数的二进制为：");
+	for(int i=0; i<len; ++i) 
+	{
+		printf("%d", ((val & head) ? 1 : 0));  // val & head为真时该位的值就是1
+		val = val << 1;                        // 原来的数再左移一位（方便val & head比较）
+	}
+	printf("\n");
+	return;
+}
+
+int main(int argc, char *argv[])
+{
+	int val;
+	printf("\n\n\t请输入一个数：");
+	scanf("%d", &val);
+	Bit(val);
+	getch();
+	return 0;
+}
